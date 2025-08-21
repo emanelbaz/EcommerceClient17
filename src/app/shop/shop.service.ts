@@ -4,6 +4,7 @@ import { IPagination } from '../shared/models/Pagination';
 import { IBrand } from '../shared/models/Brands';
 import { IType } from '../shared/models/ProductTypes';
 import {delay, map} from 'rxjs/operators';
+import { ShopParams } from '../shared/shopParams';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +17,19 @@ baseUrl='https://localhost:7166/api/';
 
   
 
-  getProducts(brandId?:number,typeId?:number){
+  getProducts(shopParams:ShopParams){
     let params= new HttpParams();
-    if(brandId){
-      params=params.append('brandId',brandId.toString());
+    if(shopParams.brandId){
+      params=params.append('brandId',shopParams.brandId.toString());
     }
 
-    if(typeId){
-      params=params.append('typeId',typeId.toString());
+    if(shopParams.typeId){
+      params=params.append('typeId',shopParams.typeId.toString());
     }
 
+    if(shopParams.sort){
+      params=params.append('sort',shopParams.sort);
+    }
     console.log(params);
 
       return this.http.get<IPagination>(this.baseUrl+'products/paged',{observe:'response',params})
