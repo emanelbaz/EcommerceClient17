@@ -42,7 +42,7 @@ export class ShopComponent implements OnInit {
     this.shopParams.pageNumber=response.pageIndex;
     this.shopParams.pageSize=response.pageSize;
     this.totalCount=response.count;
-    console.log(this.products)
+    console.log('response'+ response.pageSize)
   }, error => {
     console.log(error);
   });
@@ -69,11 +69,13 @@ export class ShopComponent implements OnInit {
 
   onBrandSelected(brandId:number){
     this.shopParams.brandId=brandId;
+    this.shopParams.pageNumber = 1; 
     this.getProducts();
   }
 
   onTypeSelected(typeId:number){
     this.shopParams.typeId=typeId;
+    this.shopParams.pageNumber = 1; 
     console.log("types : "+typeId)
     this.getProducts();
   }
@@ -82,7 +84,14 @@ export class ShopComponent implements OnInit {
   onSortSelected(event: Event){
      const selectElement = event.target as HTMLSelectElement;
     this.shopParams.sort=selectElement.value;
+    this.shopParams.pageNumber = 1; 
     this.getProducts();
 
   }
+  onPageChanged(event: any) {
+  if (this.shopParams.pageNumber !== event.page) {
+    this.shopParams.pageNumber = event.page;
+    this.getProducts();  // استدعاء API تاني بالصفحة الجديدة
+  }
+}
 }

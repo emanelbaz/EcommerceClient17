@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShopComponent } from './shop.component';
 import { ProductItemsComponent } from './product-items/product-items.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 
@@ -11,7 +12,8 @@ import { ProductItemsComponent } from './product-items/product-items.component';
     ProductItemsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PaginationModule.forRoot() 
   ],
   exports:[ShopComponent]
 })
