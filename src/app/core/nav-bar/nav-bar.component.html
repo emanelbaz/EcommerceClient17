@@ -1,17 +1,19 @@
 <nav class="bg-dark text-white p-2 fixed-top">
   <div class="d-flex justify-content-between align-items-center">
     <!-- كارت على اليمين -->
-    <div>
-        logo
-     
+    <div routerLink="['/']">
+      logo
+
     </div>
 
     <!-- اللوجو + المينيو في النص -->
     <div class="d-flex justify-content-center align-items-center">
-      <a class="text-white text-decoration-none fs-4 me-4" href="#"> Shop</a>
-      <a class="text-white text-decoration-none me-3" href="#">Home</a>
-      <a class="text-white text-decoration-none me-3" href="#">Products</a>
-      <a class="text-white text-decoration-none" href="#">About</a>
+      <a class=" text-decoration-none  me-4"  [routerLink]="['/']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact:true}">
+        Home
+      </a>
+      <a class="text-decoration-none me-3" routerLink="/shop" routerLinkActive="active">Shop</a>
+      <a class="text-decoration-none me-3">contact</a>
     </div>
 
     <!-- مساحة فاضية علشان الكارت يكون على اليمين -->

@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { ShopModule } from './shop/shop.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     HttpClientModule,
     CoreModule,
     ShopModule,
+    HomeModule,
      PaginationModule.forRoot()
   ],
   providers: [],
