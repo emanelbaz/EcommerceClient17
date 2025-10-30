@@ -1,17 +1,17 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IPagination } from '../shared/models/Pagination';
-import { IBrand } from '../shared/models/Brands';
-import { IType } from '../shared/models/ProductTypes';
+import { IPagination } from '../../shared/models/Pagination';
+import { IBrand } from '../../shared/models/Brands';
+import { IType } from '../../shared/models/ProductTypes';
 import { delay, map } from 'rxjs/operators';
-import { ShopParams } from '../shared/shopParams';
-import { IProduct } from '../shared/models/products';
-
+import { ShopParams } from '../../shared/shopParams';
+import { IProduct } from '../../shared/models/products';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ShopService {
-  baseUrl = 'https://localhost:7166/api/';
+  baseUrl =  environment.apiUrl+'/';
   constructor(private http: HttpClient) {
 
   }

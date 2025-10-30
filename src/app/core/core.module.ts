@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { RouterModule } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,8 +12,15 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
 ],
-  exports:[NavBarComponent]
+  exports:[NavBarComponent,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+  ]
 })
 export class CoreModule { }
