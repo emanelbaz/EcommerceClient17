@@ -1,25 +1,41 @@
 <nav class="bg-dark text-white p-2 fixed-top">
   <div class="d-flex justify-content-between align-items-center">
-    <!-- كارت على اليمين -->
-    <div routerLink="['/']">
-      logo
 
+    <!-- Logo -->
+    <div routerLink="/">
+      <span class="fw-bold fs-5 text-white">E-Shop</span>
     </div>
 
-    <!-- اللوجو + المينيو في النص -->
+    <!-- Navigation links -->
     <div class="d-flex justify-content-center align-items-center">
-      <a class=" text-decoration-none  me-4"  [routerLink]="['/']" routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact:true}">
+      <a class="text-decoration-none me-4 text-white" [routerLink]="['/']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
         Home
       </a>
-      <a class="text-decoration-none me-3" routerLink="/shop" routerLinkActive="active">Shop</a>
-      <a class="text-decoration-none me-3">contact</a>
+      <a class="text-decoration-none me-3 text-white" routerLink="/shop" routerLinkActive="active">Shop</a>
+      <a class="text-decoration-none me-3 text-white" href="#">Contact</a>
     </div>
 
-    <!-- مساحة فاضية علشان الكارت يكون على اليمين -->
-    <div class="position-relative">
+    <!-- Right side: cart + login/logout -->
+    <div class="d-flex align-items-center gap-3">
+
+      <!-- Cart -->
+      <div class="position-relative" routerLink="/cart" style="cursor: pointer;">
       <i class="fa fa-shopping-cart fs-4 text-white"></i>
-      <span class="cart-no">3</span>
+      <span class="cart-no bg-danger text-white rounded-circle px-2 position-absolute top-0 start-100 translate-middle">
+        {{ cartCount }}
+      </span>
+    </div>
+
+      <!-- Login / Logout -->
+      <ng-container *ngIf="currentUser$ | async as user; else loginLink">
+        <span class="me-2">👋 {{ user.email }}</span>
+        <button class="btn btn-outline-light btn-sm" (click)="logout()">Logout</button>
+      </ng-container>
+
+      <ng-template #loginLink>
+        <a class="btn btn-outline-light btn-sm" routerLink="/login">Login</a>
+      </ng-template>
     </div>
   </div>
 </nav>

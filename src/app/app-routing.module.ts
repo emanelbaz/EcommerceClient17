@@ -11,6 +11,7 @@ const routes: Routes = [
 {path:'shop',component:ShopComponent},
 {path:'shop/:id',component:ProductDetailsComponent},
 {path:'**',redirectTo:'',pathMatch:'full'},
+{ path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) }
 ];
 
 @NgModule({

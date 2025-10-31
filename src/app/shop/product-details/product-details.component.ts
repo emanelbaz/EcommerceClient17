@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute } from '@angular/router';
 import { ShopService } from '../../core/services/shop.service';
 import { IProduct } from '../../shared/models/products';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -10,26 +10,39 @@ import { IProduct } from '../../shared/models/products';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-
   product?: IProduct;
-  constructor(private shopService: ShopService,private activatedRoute:ActivatedRoute) {
+  quantity = 1; // ✅ نبدأ بواحد
 
-  }
+  constructor(
+    private shopService: ShopService,
+    private cartService: CartService,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
   ngOnInit(): void {
-
-this.loadProduct();
+    this.loadProduct();
   }
 
-  loadProduct() {
+  loadProduct(): void {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-      if (id) {
-    this.shopService.getProduct(id).subscribe(p => {
-      this.product = p;
-    }, error => {
-      console.log(error);
+    if (id) {
+      this.shopService.getProduct(id).subscribe({
+        next: (p) => (this.product = p),
+        error: (err) => console.error(err)
+      });
     }
-    )
-  }
   }
 
+  incrementQuantity(): void {
+    this.quantity++;
+  }
+
+  decrementQuantity(): void {
+    if (this.quantity > 1) this.quantity--;
+  }
+
+  addToCart(product: IProduct): void {
+    this.cartService.addItemToCart(product, this.quantity);
+    this.quantity = 1; // ✅ نرجع الكمية 1 بعد الإضافة
+  }
 }

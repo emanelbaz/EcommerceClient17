@@ -11,102 +11,107 @@ import { ShopService } from '../core/services/shop.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  @ViewChild('search', { static: true }) searchTerm?: ElementRef;
+  @ViewChild('search', { static: false }) searchTerm?: ElementRef;
   products: IProduct[] = [];
   brands: IBrand[] = [];
   types: IType[] = [];
-  totalCount: number = 0;
-  shopParams = new ShopParams;
-  sortOption = [
-    { name: 'Alphabbetical', value: 'name' },
-    { name: 'Price: Low to High', value: 'priceAsc' },
-    { name: 'Price:  High to low', value: 'priceDesc' }
+  totalCount = 0;
+  shopParams = new ShopParams();
 
+  sortOptions = [
+    { name: 'Alphabetical', value: 'name' },
+    { name: 'Price: Low to High', value: 'priceAsc' },
+    { name: 'Price: High to Low', value: 'priceDesc' }
   ];
 
-  constructor(private shopService: ShopService) {
+  loading = false; // ✅ لتتبع حالة التحميل
 
-  }
+  constructor(private shopService: ShopService) {}
+
   ngOnInit(): void {
-
-    this.getProducts();
-    this.getBrands();
-    this.getTypes();
-
-  }
-
-  getProducts() {
-
-    this.shopService.getProducts(this.shopParams).subscribe(response => {
-      this.products = response.data;
-      this.shopParams.pageNumber = response.pageIndex;
-      this.shopParams.pageSize = response.pageSize;
-      this.totalCount = response.count;
-      console.log('response' + response.data)
-    }, error => {
-      console.log(error);
-    });
-  }
-
-
-
-
-  getBrands() {
-    this.shopService.getBrands().subscribe(response => {
-      this.brands = [{ id: 0, name: 'All' }, ...response];
-    }, error => {
-      console.log(error)
-    });
-  }
-
-  getTypes() {
-    this.shopService.getTypes().subscribe(response => {
-      this.types = [{ id: 0, name: 'All' }, ...response];
-    }, error => {
-      console.log(error)
-    });
-  }
-
-  onBrandSelected(brandId: number) {
-    this.shopParams.brandId = brandId;
-    this.shopParams.pageNumber = 1;
+    this.loadFilters(); // جلب البراندات والانواع مرة واحدة
     this.getProducts();
   }
 
-  onTypeSelected(typeId: number) {
-    this.shopParams.typeId = typeId;
-    this.shopParams.pageNumber = 1;
-    console.log("types : " + typeId)
-    this.getProducts();
+  // 🟡 تحميل المنتجات
+  getProducts(): void {
+    this.loading = true;
+    this.shopService.getProducts(this.shopParams).subscribe({
+      next: response => {
+        this.products = response.data;
+        this.shopParams.pageNumber = response.pageIndex;
+        this.shopParams.pageSize = response.pageSize;
+        this.totalCount = response.count;
+        this.loading = false;
+      },
+      error: error => {
+        console.error(error);
+        this.loading = false;
+      }
+    });
   }
 
+  // 🟢 تحميل البراندات والأنواع مرة واحدة فقط
+  loadFilters(): void {
+    this.shopService.getBrands().subscribe({
+      next: res => (this.brands = [{ id: 0, name: 'All' }, ...res]),
+      error: err => console.error(err)
+    });
 
-  onSortSelected(event: Event) {
+    this.shopService.getTypes().subscribe({
+      next: res => (this.types = [{ id: 0, name: 'All' }, ...res]),
+      error: err => console.error(err)
+    });
+  }
+
+  // 🔸 عند اختيار brand
+  onBrandSelected(brandId: number): void {
+    if (this.shopParams.brandId !== brandId) {
+      this.shopParams.brandId = brandId;
+      this.shopParams.pageNumber = 1;
+      this.getProducts();
+    }
+  }
+
+  // 🔸 عند اختيار type
+  onTypeSelected(typeId: number): void {
+    if (this.shopParams.typeId !== typeId) {
+      this.shopParams.typeId = typeId;
+      this.shopParams.pageNumber = 1;
+      this.getProducts();
+    }
+  }
+
+  // 🔸 عند تغيير الترتيب
+  onSortSelected(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.shopParams.sort = selectElement.value;
     this.shopParams.pageNumber = 1;
     this.getProducts();
-
   }
-  onPageChanged(event: any) {
+
+  // 🔸 البحث
+  onSearch(): void {
+    const searchValue = this.searchTerm?.nativeElement.value.trim();
+    if (searchValue !== this.shopParams.search) {
+      this.shopParams.search = searchValue;
+      this.shopParams.pageNumber = 1;
+      this.getProducts();
+    }
+  }
+
+  // 🔸 إعادة التصفية
+  onReset(): void {
+    if (this.searchTerm) this.searchTerm.nativeElement.value = '';
+    this.shopParams = new ShopParams();
+    this.getProducts();
+  }
+
+  // 🔸 تغيير الصفحة
+  onPageChanged(event: number): void {
     if (this.shopParams.pageNumber !== event) {
       this.shopParams.pageNumber = event;
       this.getProducts();
     }
-
-
-  }
-
-  onSearch() {
-    this.shopParams.search = this.searchTerm?.nativeElement.value;
-    this.getProducts();
-  }
-
-  onReset() {
-    if (this.searchTerm) {
-      this.searchTerm.nativeElement.value = '';
-    }
-    this.shopParams = new ShopParams();
-    this.getProducts();
   }
 }

@@ -1,62 +1,93 @@
-<div class="container">
-    <div class="row">
-        <section class="col-3">
-            <h5 class="text-warning ml-3">Sort</h5>
-            <select class="custom-select my-3" (change)="onSortSelected($event)">
-                <option *ngFor="let sort of sortOption" [value]="sort.value">
-                    {{sort.name}}
-                </option>
+<div class="container mt-4">
+  <div class="row">
+    <!-- 🔹 Sidebar -->
+    <section class="col-md-3">
+      <h5 class="text-warning">Sort</h5>
+      <select class="custom-select my-3" (change)="onSortSelected($event)">
+        <option *ngFor="let sort of sortOptions" [value]="sort.value">
+          {{ sort.name }}
+        </option>
+      </select>
 
-            </select>
+      <h5 class="text-warning">Brands</h5>
+      <ul class="list-group my-3">
+        <li
+          class="list-group-item"
+          *ngFor="let brand of brands"
+          (click)="onBrandSelected(brand.id)"
+          [ngClass]="{ active: shopParams.brandId === brand.id }"
+          style="cursor: pointer;"
+        >
+          {{ brand.name }}
+        </li>
+      </ul>
 
+      <h5 class="text-warning">Types</h5>
+      <ul class="list-group my-3">
+        <li
+          class="list-group-item"
+          *ngFor="let type of types"
+          (click)="onTypeSelected(type.id)"
+          [ngClass]="{ active: shopParams.typeId === type.id }"
+          style="cursor: pointer;"
+        >
+          {{ type.name }}
+        </li>
+      </ul>
+    </section>
 
-            <h5 class="text-warning ml-3">Brands</h5>
-            <ul class="list-group my-3">
-                <li class="list-group-item " *ngFor="let brand of brands" (click)="onBrandSelected(brand.id)"
-                    [value]="brand.id" [ngClass]="{'active': shopParams.brandId === brand.id}">
+    <!-- 🔹 Products Section -->
+    <section class="col-md-9">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <app-paging-header
+          [totalCount]="totalCount"
+          [pageSize]="shopParams.pageSize"
+          [pageNumber]="shopParams.pageNumber"
+        ></app-paging-header>
 
-                    {{brand.name}}
-                </li>
+        <div class="form-inline">
+          <input
+            #search
+            type="text"
+            class="form-control me-2"
+            style="width: 300px;"
+            placeholder="Search"
+            (keyup.enter)="onSearch()"
+          />
+          <button class="btn btn-outline-primary me-2" (click)="onSearch()">
+            Search
+          </button>
+          <button class="btn btn-outline-success" (click)="onReset()">
+            Reset
+          </button>
+        </div>
+      </div>
 
+      <!-- 🔸 Products Grid -->
+      <div class="row">
+        <div
+          class="col-md-4 mb-3"
+          *ngFor="let product of products"
+        >
+          <app-product-items [product]="product"></app-product-items>
+        </div>
+      </div>
 
-            </ul>
-            <h5 class="text-warning ml-3">Types</h5>
-            <ul class="list-group my-3">
-                <li class="list-group-item " *ngFor="let type of types" (click)="onTypeSelected(type.id)"
-                    [value]="type.id" [ngClass]="{'active': shopParams.typeId===type.id}">
-                    {{type.name}}
-                </li>
+      <!-- 🔸 Pagination -->
+      <div class="d-flex justify-content-center mt-3">
+        <app-pager
+          [totalCount]="totalCount"
+          [pageSize]="shopParams.pageSize"
+          (pageChanged)="onPageChanged($event)"
+        ></app-pager>
+      </div>
 
-
-            </ul>
-        </section>
-        <section class="col-9">
-            <div class="d-flex justify-content-between align-items-center pd-2">
-               <app-paging-header 
-               [totalCount]="totalCount"
-               [pageSize]="shopParams.pageSize"
-               [pageNumber]="shopParams.pageNumber"
-               >
-            </app-paging-header>
-                <div class="form-inline mt-2">
-                    <input (keyup.enter)="onSearch()" class="form-control" style="width:300px"  #search placeholder="search">
-                    <button class="btn btn-outline-primary my-2" (click)="onSearch()">search</button>
-                    <button class="btn btn-outline-success  my-2" (click)="onReset()">reset</button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-4" *ngFor="let product of products">
-                    <app-product-items [product]="product"></app-product-items>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center">
-                <app-pager
-                [totalCount]="totalCount"
-               [pageSize]="shopParams.pageSize"
-               (pageChanged)="onPageChanged($event)"
-                ></app-pager>
-            </div>
-        </section> 
-    </div>
+      <!-- 🔸 Loading Spinner -->
+      <div *ngIf="loading" class="text-center mt-4">
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>

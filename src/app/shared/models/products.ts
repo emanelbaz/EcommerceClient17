@@ -5,4 +5,5 @@ export interface IProduct {
   price: number
   productType: string
   productBrand: string
+  pictureUrl:string
 }
