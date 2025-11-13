@@ -1,1 +1,24 @@
-  <h1>welcome to {{title}}</h1>
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Search for products..."
+    [(ngModel)]="searchQuery"
+  />
+  <button (click)="searchQuery = ''">Search</button>
+</div>
+
+<div class="product-list">
+
+ <div *ngFor="let product of products" class="product-card">
+  <h3>{{ product.name }}</h3>
+  <p>{{ product.price }} EGP</p>
+  <img [src]="product.pictureUrl || 'assets/images/dummy.png'" alt="{{ product.name }}" class="product-image">
+
+  <div class="quantity-controls">
+    <button  class="qty-btn"  (click)="decreaseQuantity(product)">-</button>
+    <span class="qty">{{ product.quantity || 0 }}</span>
+    <button class="qty-btn" (click)="increaseQuantity(product)">+</button>
+  </div>
+
+  <button class="add-to-cart-btn" (click)="addToCart(product)">Add to Cart</button>
+</div>

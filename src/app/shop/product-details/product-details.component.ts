@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ShopService } from '../../core/services/shop.service';
 import { IProduct } from '../../shared/models/products';
 import { CartService } from '../../core/services/cart.service';
@@ -9,29 +8,28 @@ import { CartService } from '../../core/services/cart.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent {
   product?: IProduct;
   quantity = 1; // ✅ نبدأ بواحد
 
   constructor(
     private shopService: ShopService,
     private cartService: CartService,
-    private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    this.loadProduct();
-  }
+  // ngOnInit(): void {
+  //   this.loadProduct();
+  // }
 
-  loadProduct(): void {
-    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    if (id) {
-      this.shopService.getProduct(id).subscribe({
-        next: (p) => (this.product = p),
-        error: (err) => console.error(err)
-      });
-    }
-  }
+  // loadProduct(): void {
+  //   // const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+  //   if (id) {
+  //     this.shopService.getProduct(id).subscribe({
+  //       next: (p) => (this.product = p),
+  //       error: (err) => console.error(err)
+  //     });
+  //   }
+  // }
 
   incrementQuantity(): void {
     this.quantity++;
