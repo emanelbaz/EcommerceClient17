@@ -1,4 +1,4 @@
-<nav class="bg-dark text-white p-2 fixed-top">
+<nav class="bg-dark text-white p-2 fixed-top ">
   <div class="d-flex justify-content-between align-items-center">
 
     <!-- Logo -->
@@ -8,11 +8,12 @@
 
     <!-- Navigation links -->
     <div class="d-flex justify-content-center align-items-center">
-      <a class="text-decoration-none me-4 text-white" [routerLink]="['/']" routerLinkActive="active"
+      <a class="text-decoration-none me-4 text-white" [routerLink]="['/home']" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }">
         Home
       </a>
       <a class="text-decoration-none me-3 text-white" routerLink="/shop" routerLinkActive="active">Shop</a>
+      <a class="text-decoration-none me-3 text-white" routerLink="/cart" routerLinkActive="active">Cart</a>
       <a class="text-decoration-none me-3 text-white" href="#">Contact</a>
     </div>
 

@@ -11,6 +11,8 @@ import { ShopService } from '../core/services/shop.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
+ isLoading:boolean= false
+ value:any
   @ViewChild('search', { static: false }) searchTerm?: ElementRef;
   products: IProduct[] = [];
   brands: IBrand[] = [];
@@ -113,5 +115,8 @@ export class ShopComponent implements OnInit {
       this.shopParams.pageNumber = event;
       this.getProducts();
     }
+  }
+  clearSearchText(){
+
   }
 }

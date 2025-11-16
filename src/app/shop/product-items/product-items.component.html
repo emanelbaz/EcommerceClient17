@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<!-- <div class="col-md-4">
     <div class="card" style="width: 18rem;">
         <img src="assets/images/default.jpg" class="img-fluid bg-light" alt="{{product.name}}">
         <div class="card-body d-flex flex-column">
@@ -11,4 +11,47 @@
 
         </div>
     </div>
+</div> -->
+
+<div class="card-section">
+  <mat-card class="item-card" appearance="outlined">
+    <mat-card-header class="item-header">
+        <div mat-card-avatar class="item-header-image"></div>
+        <mat-card-title class="item-title">Shiba Inu</mat-card-title>
+        <mat-card-subtitle class="item-subtitle">Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content class="card-content">
+      <p class="card-text">
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="card-action"> 
+      @if (!selected) {
+        <button mat-raised-button class="add-cart-button" (click)="addToCart()">
+          <span>Add To Cart <i class="fa-solid fa-cart-shopping"></i></span>
+       </button>
+      <button mat-raised-button  class="view-cart-button" (click)="goToProductDetails($event)">View</button>
+
+    }
+    @else {
+   
+       <mat-form-field appearance="fill">
+
+        <mat-label>Quantity</mat-label>
+       <input type="number"  class="form-control" placeholder="0">
+       
+      </mat-form-field>
+       
+       <button mat-raised-button class="add-cart-button" (click)="addItem()">add</button>
+
+    }
+      
+      
+    </mat-card-actions>
+  </mat-card>
+
 </div>
+

@@ -1,0 +1,42 @@
+.sidebar-section{
+    background-color: #fff;
+     border-right: 1px solid #ddd;
+      height: 100vh;
+      padding: 2rem;
+      position: relative;
+      .search-box{
+        position: relative;
+         .clear-btn {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 20px;
+        color: black;
+      }
+      }
+      .sidebar-header{
+       .sidebar-title{
+        
+         color: #007bff;
+        font-size: 20px;
+        margin-top: 3rem;
+        // text-align: center;
+      
+      }
+    }
+
+     .sidebar-menu{
+       list-style: none;
+  
+       .sidebar-items{
+        margin-bottom: 3rem;
+       }
+     } 
+   
+            
+     
+   
+     }
+

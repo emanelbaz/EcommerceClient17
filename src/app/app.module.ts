@@ -9,6 +9,7 @@ import { ShopModule } from './shop/shop.module';
 import { HomeModule } from './home/home.module';
 import { AccountModule } from './account/account/account.module';
 import { HttpClientModule } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync('noop')
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,55 @@
+<div class="sidebar-section">
+  <div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchText"
+      (ngModelChange)="onSearch()"
+      class="form-control"
+      placeholder="Search..."
+    />
+    @if( searchText){
+    <span class="clear-btn" (click)="clearSearchText()">×</span>
+    }
+  </div>
+
+  <div class="sidebar-header">
+    <h3 class="sidebar-title">Filter</h3>
+  </div>
+
+  <ul class="sidebar-menu">
+    <li class="sidebar-items">
+      <div class="card flex justify-content-center">
+        <p-dropdown
+          [options]="cities"
+          [(ngModel)]="selectedCity"
+          placeholder="Sort"
+          [editable]="true"
+          optionLabel="name"
+        />
+      </div>
+    </li>
+    <li class="sidebar-items">
+      <div class="card flex justify-content-center">
+        <p-dropdown
+          [options]="cities"
+          [(ngModel)]="selectedCity"
+          placeholder="Types"
+          [editable]="true"
+          optionLabel="name"
+        />
+      </div>
+    </li>
+
+    <li class="sidebar-items">
+      <div class="card flex justify-content-center">
+        <p-dropdown
+          [options]="cities"
+          [(ngModel)]="selectedCity"
+          placeholder="Brands"
+          [editable]="true"
+          optionLabel="name"
+        />
+      </div>
+    </li>
+  </ul>
+</div>
