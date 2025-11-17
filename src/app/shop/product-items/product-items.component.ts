@@ -1,9 +1,9 @@
-import { Component, Input, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, OnInit,ChangeDetectionStrategy } from '@angular/core';
 import { IProduct } from '../../shared/models/products';
 import { CartService } from '../../core/services/cart.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../products-service.service';
-import { Product } from '../product.model';
+
 
 
 @Component({
@@ -15,30 +15,26 @@ import { Product } from '../product.model';
 export class ProductItemsComponent implements OnInit {
 selected= false
   
-@Input() product!:IProduct;
+product = input.required<IProduct> ()
 
 constructor(private productService: ProductsService,private router:Router){}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((response:Product[])=>{
-      console.log(response);
-      
-
-    })
+   
     
   }
-  addToCart(){
+  toggleSelection(){
     this.selected= true
+  
   }
-  addItem(){
+  addToCart(){
     this.selected = false
+    
   }
-  goToProductDetails(event:any){
-    // const id = event.target.id
-    // this.router.navigate([`/shop/${id}`])
+  goToProductDetails(id:string){
+      this.router.navigate(['shop',id])
+    
 
   }
-// addToCart(product: IProduct): void {
-//     this.cartService.addItemToCart(product);
-//   }
+
 }

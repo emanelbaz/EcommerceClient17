@@ -1,12 +1,17 @@
 
 <div class="main-layout">
-  
+    <!-- <button><i class="fa fa-bars"></i></button> -->
     <app-sidebar ></app-sidebar>
     @if(!isLoading){
        <div class="row">
-        <div class="col-md-4 product-item" *ngFor="let product of products">
-          <app-product-items [product]="product"></app-product-items>
+        @for (item of products; track $index) {
+           
+          <div class="col-md-4 product-item" >
+          <app-product-items [product]="item"></app-product-items>
         </div>
+        }
+                
+       
     </div>
 
     }@else {
