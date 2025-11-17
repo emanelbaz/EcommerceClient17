@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { ProductsService } from '../products-service.service';
+import { ProductsService } from '../shop/products-service.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent  {
-  searchQuery: string = '';
+ searchQuery: string = '';
 products: any[] = []
 increaseQuantity(product: any) {
   if (!product.quantity) product.quantity = 0;

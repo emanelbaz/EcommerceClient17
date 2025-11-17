@@ -1,48 +1,44 @@
-<div class="row">
-  <div class="col-6">
-    <h1>{{ product?.name }}</h1>
-    <p>{{ product?.price  }}</p>
 
-    <div class="d-flex justify-content-start align-items-center gap-2">
-      <!-- زرار تقليل الكمية -->
-      <i
-        class="fa fa-minus-circle text-warning"
-        style="cursor: pointer; font-size: 1.2rem;"
-        (click)="decrementQuantity()"
-      ></i>
-
-      <span class="font-weight-bold">{{ quantity }}</span>
-
-      <!-- زرار زيادة الكمية -->
-      <i
-        class="fa fa-plus-circle text-warning"
-        style="cursor: pointer; font-size: 1.2rem;"
-        (click)="incrementQuantity()"
-      ></i>
-
-      <!-- زرار إضافة للعربة -->
-      <button
-        class="btn btn-outline-secondary ms-3"
-        *ngIf="product"
-      >
-        Add To Cart
-      </button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="image-section">
+        <img
+          class="image"
+          src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
+          alt=""
+        />
+      </div>
     </div>
-  </div>
-
-  <div class="col-6">
-    <img
-      *ngIf="product?.pictureUrl"
-      [src]="product?.pictureUrl"
-      alt="{{ product?.name }}"
-      class="img-fluid rounded shadow-sm"
-    />
-  </div>
-</div>
-
-<div class="row mt-4">
-  <div class="col-12 ml-3">
-    <h4>Description</h4>
-    <p>{{ product?.description }}</p>
+    <div class="col-md-7">
+      <div class="details-section">
+        <ul>
+          <li class="list-item"><strong>Name: </strong> {{ product.name }}</li>
+          <li class="list-item">
+            <strong>ProductType: </strong> {{ product.productType }}
+          </li>
+          <li class="list-item">
+            <strong>ProductBrand: </strong> {{ product.productBrand }}
+          </li>
+          <li class="list-item">
+            <strong>Price: </strong> {{ product.price }}L.E
+          </li>
+          <li class="list-item">
+            <strong>Description: </strong> {{ product.description }}
+          </li>
+          <li class="list-item">
+            <strong>variants: </strong>
+            @for (variant of product.variants; track $index) {
+            <ul >
+              <li class="varient-list">
+                Color :{{ variant.color }}  | Size : {{ variant.size }} | Price
+                :{{ variant.price }}L.E
+              </li>
+            </ul>
+            }
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
