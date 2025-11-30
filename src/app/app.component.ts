@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 
@@ -13,9 +14,16 @@ export class AppComponent  implements OnInit{
     title = 'Ecommerce';
   
 
-    constructor(){}
+    hideNavbar = false;
+    constructor(private router: Router){}
 
   ngOnInit(): void {
+    this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      const noNavbarRoutes = ['/login', '/register'];
+      this.hideNavbar = noNavbarRoutes.includes(event.url);
+    }
+  });
   
 }
 
