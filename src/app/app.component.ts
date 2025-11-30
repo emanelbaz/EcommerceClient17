@@ -18,6 +18,7 @@ export class AppComponent  implements OnInit{
     constructor(private router: Router){}
 
   ngOnInit(): void {
+    //to hide navbar on login and register pages
     this.router.events.subscribe(event => {
     if (event instanceof NavigationEnd) {
       const noNavbarRoutes = ['/login', '/register'];
