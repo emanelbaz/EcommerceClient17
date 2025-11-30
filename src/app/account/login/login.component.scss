@@ -1,0 +1,35 @@
+.container-fluid{
+    // padding: 0 !important;
+   
+}
+
+.firts-div{
+    background-image: url('../../../assets/images/login/login.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The dark overlay */
+.first-div .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);  // darkness level
+  z-index: 1;
+}
+
+/* The content stays above overlay */
+.first-div .content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+
+.auth-links .btn {
+  margin-top: 15px;
+}
