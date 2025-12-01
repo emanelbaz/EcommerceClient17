@@ -1,3 +1,18 @@
+/* Make the whole page take full height */
+html, body {
+  height: 100%;
+  overflow: hidden; /* disable page scroll */
+}
+
+.login{
+  font-family: "Roboto", sans-serif;
+}
+
+/* Make the row fill full height */
+.login .row {
+  height: 100vh;
+}
+
 .first-div{
     background-image: url('../../../assets/images/login/login.jpg');
     background-size: cover;
@@ -22,14 +37,14 @@
 }
 
 /* The content stays above overlay */
-.first-div .content {
+.first-div .fixed-content {
   position: relative;
   z-index: 2;
   text-align: center;
   color: #fff;
 }
 
-.content h2{
+.fixed-content h2{
   font-family: "Roboto", sans-serif;
   font-weight: 700;
   font-size: 36px;
@@ -37,7 +52,7 @@
   line-height: 43px;
 }
 
-.content p{
+.fixed-content p{
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -53,7 +68,111 @@
   font-weight:500;
   border-radius: 10px;
   color: white;
- 
+}
 
+/* ----------- Layout & Content Styling ----------- */
+/* RIGHT column – scroll inside only */
+.scroll-section {
+  height: 100vh;
+  overflow-y: auto;
+  padding: 40px;
+}
 
+.content {
+  animation: fadeInUp 0.7s ease both;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.content h1 {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.content h2 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.content p {
+  color: #555;
+  font-size: 15px;
+}
+
+/* ----------- Form Styling & Motion ----------- */
+.form-control {
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Form container animation */
+.form-div {
+  animation: fadeIn 1s ease both;
+}
+
+/* Submit button animation */
+button.btn-success {
+  transition: 0.3s;
+  font-family: "Roboto", sans-serif;
+  margin-top: 35px;
+  padding:10px 50px !important;
+  font-size:18px;
+  font-weight:500;
+  border-radius: 10px;
+  color: white;
+}
+
+button.btn-success:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 15px rgba(0, 128, 0, 0.3);
+}
+
+/* ----------- Social Icons ----------- */
+.social-links p {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.social-links i {
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+
+.social-links div:hover i {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Circle animation hover */
+.social-links div {
+  transition: 0.3s ease;
+}
+
+.social-links div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* ----------- Animations ----------- */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
