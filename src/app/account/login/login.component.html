@@ -1,8 +1,166 @@
-<div class="container mt-5">
-  <h2>Login</h2>
-  <form (ngSubmit)="login()">
-    <input type="email" placeholder="Email" [(ngModel)]="model.email" name="email" class="form-control mb-2" required>
-    <input type="password" placeholder="Password" [(ngModel)]="model.password" name="password" class="form-control mb-2" required>
-    <button class="btn btn-primary w-100">Login</button>
-  </form>
-</div>
+<section class="login">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 p-0">
+        <div class="first-div position-relative">
+          <div class="overlay"></div>
+          <div class="fixed-content text-start p-4">
+            <h2 class="text-capitalize">Welcome to OurShop</h2>
+            <p>
+              We are here to deliver the best products for you to select from it
+              <br />
+              let's start with you login with your account <br />
+              or create a one if you don't have
+            </p>
+
+            <div class="auth-links">
+              <a routerLink="/auth/register" class="btn btn-warning"
+                >Create Account</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 scroll-section">
+        <div class="content px-5 py-4">
+          <h1 class="mb-5">Our Shop</h1>
+          <h2 class="text-black">Log In</h2>
+          <p>
+            Welcome back! Please enter your details to log in to your account.
+          </p>
+
+          <div class="form-div my-5">
+            <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                />
+                <div id="emailHelp" class="form-text">
+                  We'll never share your email with anyone else.
+                </div>
+
+                @if (loginForm.get("email")?.errors &&
+                loginForm.get("email")?.touched) {
+                <div
+                  class="alert alert-danger d-flex align-items-start p-3"
+                  role="alert"
+                >
+                  <!-- Icon -->
+                  <svg
+                    class="me-2 mt-1"
+                    width="20"
+                    height="20"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                    />
+                  </svg>
+
+                  <!-- Text -->
+                  <div>
+                    <ul class="mb-0 ps-3">
+                      @if (loginForm.get("email")?.getError('required')) {
+                      <li>Email is required</li>
+                      } @else if (loginForm.get("email")?.getError('email')) {
+                      <li>Email is not valid</li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+                }
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  formControlName="password"
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                />
+
+                @if (loginForm.get("password")?.errors &&
+                loginForm.get("password")?.touched) {
+                <div
+                  class="alert alert-danger d-flex align-items-start p-3 mb-3"
+                  role="alert"
+                >
+                  <!-- Icon -->
+                  <svg
+                    class="me-2 mt-1"
+                    width="20"
+                    height="20"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                    />
+                  </svg>
+
+                  <!-- Text -->
+                  <div>
+                    <ul class="mb-0 ps-3">
+                      @if (loginForm.get("password")?.getError('required')) {
+                      <li>Password is required</li>
+                      } @else if
+                      (loginForm.get("password")?.getError('pattern')) {
+                      <li>Password is not valid</li>
+                      }
+                    </ul>
+                  </div>
+                </div>
+                }
+              </div>
+
+              <button type="submit" class="btn btn-success px-5">Login</button>
+            </form>
+          </div>
+
+          <div class="social-links">
+            <p>Follow us in</p>
+            <div class="d-flex gap-3 flex-row justify-content-center align-items-center">
+
+              <div class="facebook-icon bg-primary d-inline-block p-2 rounded-circle ">
+              <a href="#"><i class="fab fa-facebook-f text-white"></i></a>
+            </div>
+
+            <div
+              class="twitter-icon bg-info d-inline-block p-2 rounded-circle">
+              <a href="#"><i class="fab fa-twitter text-white "></i></a>
+            </div>
+
+            <div
+              class="instagram-icon bg-danger d-inline-block p-2 rounded-circle">
+              <a href="#"><i class="fab fa-instagram text-white"></i></a>
+              </div>
+
+              <div
+              class="linkedin-icon bg-primary d-inline-block p-2 rounded-circle">
+              <a href="#"><i class="fab fa-linkedin text-white"></i></a>
+              </div>
+
+            </div>
+            
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

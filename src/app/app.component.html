@@ -1,3 +1,4 @@
+@if(!hideNavbar){
 <app-nav-bar></app-nav-bar>
 <div class="container" style="margin-top: 140px;" >
 
@@ -5,4 +6,12 @@
 
 <router-outlet></router-outlet>
 </div>
+
+}
+
+@else{
+<router-outlet></router-outlet>
+}
+
+
 
