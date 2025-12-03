@@ -5,10 +5,12 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 import { LoginComponent } from './account/login/login.component';
 import { AppComponent } from './app.component';
+import { RegisterComponent } from './account/register/register.component';
 
 const routes: Routes = [
   
 { path: 'login', component: LoginComponent },
+{path:'register', component:RegisterComponent},
 //  {path:'',component:AppComponent,children:[
 //   {path: 'home', loadChildren: () =>import('./home/home.module').then((m) => m.HomeModule)},
 //   {path: 'shop', loadChildren: () =>import('./shop/shop.module').then((m) => m.ShopModule)},
