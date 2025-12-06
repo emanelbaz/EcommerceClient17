@@ -1,82 +1,79 @@
-.card-section{
-  .item-card{
+.card-section {
+  .item-card {
     max-width: 400px;
     margin-bottom: 8px;
-  .item-header{
-   
-    .item-title{
-       padding-bottom: .5rem;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-5px);
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .item-header {
+      .item-title {
+        padding-bottom: 0.5rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 200px;
-     
-    }
-    .item-subtitle{
-       padding-bottom: 1rem;
-       text-align: center;
-   
+        text-align: center;
+      }
+      .item-subtitle {
+        padding-bottom: 1rem;
+        text-align: center;
+      }
     }
 
-  }
-}
-  
-  .card-content{
-    .card-text{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 200px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  }
-  .card-action{
-     .cart-buttons-box{
+    .card-content {
+      .card-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+    .status {
       display: flex;
-      gap: 1rem;
-      
-    .view-cart-button{
-      background-color: #fd7e14;
-       margin-left: 3rem;
-       margin-bottom: .5rem;   
-      color: #fff;
-     }
+      align-items: center;
+      position: absolute;
+      left: 10px;
+      bottom: 3rem;
+      margin-bottom: 10px;
+      color: #28a745;
+      font-weight: bold;
     }
-    .add-cart-button{
-      background-color: #28a745;
-      color: #fff;
-      margin-bottom: .5rem;
-       .fa-cart-shopping{
-         margin-left: 10px;}
-     }
-   
-       
- 
-    
 
-   }
-  
+    .card-action {
+      .cart-buttons-box {
+        display: flex;
+        gap: 2rem;
 
+        .view-cart-button {
+          background-color: #fd7e14;
+          margin-left: 1rem;
+          margin-bottom: 0.5rem;
+          color: #fff;
+        }
+      }
+      .add-cart-button {
+        background-color: #28a745;
+        margin-left: 10px;
+        color: #fff;
+        .fa-cart-shopping {
+          margin-left: 10px;
+        }
+      }
+    }
   }
-  // .cart-input-box{
-  //   display: flex;
-  //   gap: 1rem;
-    
+  // @media (max-width: 768px) {
+  //   .card-action {
+  //     display: flex;
+  //     flex-wrap: wrap;
+  //   }
   // }
-
- 
-
-  
-
-   
-   
-
-
-   
- 
-
-
-
-
+  // @media (min-width: 769px) {
+  // }
+}

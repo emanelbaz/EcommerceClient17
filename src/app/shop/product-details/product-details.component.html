@@ -1,4 +1,28 @@
+<div class="product-details-container">
+  <div class="product-details-content">
+    <div class="item-image">
+      <img
+        src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
+        alt="Product Image"
+      />
+    </div>
+    <div class="item-details">
+      <p>{{ product.description }}</p>
+      <p>{{ product.productType }}</p>
+      <p>{{ product.name }}</p>
+      <p>{{ product.productBrand }}</p>
+      <p>{{ product.price }} EGP</p>
+      <hr />
+      <div>
+        <label for="">
+          <input type="radio"  />
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- 
 <div class="container">
   <div class="row">
     <div class="col-md-5">
@@ -10,24 +34,25 @@
         />
       </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-2"></div>
+    <div class="col-md-5">
       <div class="details-section">
         <ul>
-          <li class="list-item"><strong>Name: </strong> {{ product.name }}</li>
+          <li class="list-item">{{ product.name }}</li>
           <li class="list-item">
-            <strong>ProductType: </strong> {{ product.productType }}
+             {{ product.productType }}
           </li>
           <li class="list-item">
-            <strong>ProductBrand: </strong> {{ product.productBrand }}
+             {{ product.productBrand }}
           </li>
           <li class="list-item">
-            <strong>Price: </strong> {{ product.price }}L.E
+           {{ product.price }}L.E
           </li>
           <li class="list-item">
-            <strong>Description: </strong> {{ product.description }}
+             {{ product.description }}
           </li>
           <li class="list-item">
-            <strong>variants: </strong>
+          
             @for (variant of product.variants; track $index) {
             <ul >
               <li class="varient-list">
@@ -41,4 +66,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
