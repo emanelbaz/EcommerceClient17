@@ -12,7 +12,7 @@ export class LoginComponent {
 
     loginForm:FormGroup = new FormGroup ({
     email:new FormControl(null, [Validators.required, Validators.email]    ), 
-    password: new FormControl(null, [Validators.required])
+    password: new FormControl(null, [Validators.required, Validators.minLength(3)])
   })
 
 
@@ -29,7 +29,7 @@ export class LoginComponent {
       next: response => {
         console.log(' Logged in successfully', response);
         alert('Welcome back!');
-        this.router.navigateByUrl('/shop'); // 👈 يروح على صفحة الشوب بعد اللوجن
+        this.router.navigateByUrl('/shop'); 
       },
       error: err => {
         alert('Login failed. Please check your credentials and try again.');

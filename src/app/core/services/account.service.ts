@@ -16,6 +16,7 @@ export class AccountService {
   constructor(private http: HttpClient) {}
 
   register(values: any) {
+    console.log('Register values:', values);
     return this.http.post<User>(`${this.baseUrl}/register`, values).pipe(
       map(user => {
         if (user) {

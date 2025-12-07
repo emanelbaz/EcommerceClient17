@@ -1,1 +1,174 @@
-<p>register works!</p>
+<section class="register-section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 p-0">
+        <div class="first-div position-relative">
+          <div class="overlay"></div>
+          <div class="fixed-content text-start p-4">
+            <h2 class="text-capitalize">Welcome to OurShop</h2>
+            <p>
+              We are here to deliver the best products for you to select from it
+              <br />
+              let's start with creating a new account.<br />
+              or login if you already have one.
+            </p>
+
+            <div class="auth-links">
+              <a routerLink="/login" class="btn btn-warning">Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 scroll-section">
+        <div class="content px-5 py-4">
+          <h1 class="mb-5">Our Shop</h1>
+          <h2 class="text-black">Register</h2>
+          <p>Please fill in the form to create a new account.</p>
+
+          <div class="form-div my-5">
+            <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+              <!-- ================== NAME ================== -->
+              <div class="col-12 mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  formControlName="displayName"
+                  class="form-control"
+                  placeholder="First and Last name"
+                />
+
+                @if (registerForm.get('displayName')?.errors &&
+                registerForm.get('displayName')?.touched) {
+                <div class="alert alert-danger mt-2 p-2">
+                  @if (registerForm.get('displayName')?.getError('required')) {
+                  <div>Name is required</div>
+                  } @else if (registerForm.get('displayName')?.getError('minlength')) {
+                  <div>Name must be at least 3 characters</div>
+                  } @else if (registerForm.get('displayName')?.getError('maxlength')) {
+                  <div>Name must be at most 20 characters</div>
+                  }
+                </div>
+                }
+              </div>
+
+              <!-- ================== EMAIL ================== -->
+              <div class="col-12 mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  class="form-control"
+                  placeholder="name@example.com"
+                />
+
+                @if (registerForm.get('email')?.errors &&
+                registerForm.get('email')?.touched) {
+                <div class="alert alert-danger mt-2 p-2">
+                  @if (registerForm.get('email')?.getError('required')) {
+                  <div>Email is required</div>
+                  } @else if (registerForm.get('email')?.getError('email')) {
+                  <div>Email is not valid</div>
+                  }
+                </div>
+                }
+              </div>
+
+              <!-- ================== PASSWORD ================== -->
+              <div class="col-12 mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  formControlName="password"
+                  class="form-control"
+                  placeholder="••••••••"
+                />
+
+                @if (registerForm.get('password')?.errors &&
+                registerForm.get('password')?.touched) {
+                <div class="alert alert-danger mt-2 p-2">
+                  @if (registerForm.get('password')?.getError('required')) {
+                  <div>Password is required</div>
+                  } @else if (registerForm.get('password')?.getError('pattern')) {
+                  <div>Password must include:</div>
+                  <ul class="mb-0">
+                    <li>At least 1 uppercase letter</li>
+                    <li>At least 1 digit</li>
+                    <li>At least 1 special character</li>
+                    <li>Minimum length 7</li>
+                  </ul>
+                  }
+                </div>
+                }
+              </div>
+
+              <!-- ================== CONFIRM PASSWORD ================== -->
+              <div class="col-12 mb-3">
+                <label for="rePassword" class="form-label"
+                  >Confirm Password</label
+                >
+                <input
+                  id="rePassword"
+                  type="password"
+                  formControlName="rePassword"
+                  class="form-control"
+                  placeholder="••••••••"
+                />
+
+                @if (registerForm.get('rePassword')?.touched &&
+                registerForm.getError('mismatch')) {
+                <div class="alert alert-danger mt-2 p-2">
+                  Passwords do not match!
+                </div>
+                } @if (registerForm.get('rePassword')?.touched &&
+                registerForm.get('rePassword')?.getError('required')) {
+                <div class="alert alert-danger mt-2 p-2">
+                  Confirm password is required.
+                </div>
+                }
+              </div>
+
+                <!-- ================== SUBMIT BUTTON ================== -->
+
+              <button type="submit" class="btn btn-success px-5">Register your account </button>
+            </form>
+          </div>
+
+          <div class="social-links">
+            <p>Follow us in</p>
+            <div
+              class="d-flex gap-3 flex-row justify-content-center align-items-center"
+            >
+              <div
+                class="facebook-icon bg-primary d-inline-block p-2 rounded-circle"
+              >
+                <a href="#"><i class="fab fa-facebook-f text-white"></i></a>
+              </div>
+
+              <div
+                class="twitter-icon bg-info d-inline-block p-2 rounded-circle"
+              >
+                <a href="#"><i class="fab fa-twitter text-white"></i></a>
+              </div>
+
+              <div
+                class="instagram-icon bg-danger d-inline-block p-2 rounded-circle"
+              >
+                <a href="#"><i class="fab fa-instagram text-white"></i></a>
+              </div>
+
+              <div
+                class="linkedin-icon bg-primary d-inline-block p-2 rounded-circle"
+              >
+                <a href="#"><i class="fab fa-linkedin text-white"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
