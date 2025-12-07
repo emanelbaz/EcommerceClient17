@@ -5,17 +5,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
-import { ShopModule } from './shop/shop.module';
+
 import { HomeModule } from './home/home.module';
 import { AccountModule } from './account/account/account.module';
 import { HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ToastrModule } from 'ngx-toastr';
+import { ShopModule } from './shop/shop.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -24,13 +23,11 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HomeModule,
     AccountModule,
     AppRoutingModule,
-    HttpClientModule
-
-
+    HttpClientModule,
+    ShopModule ,
+    ToastrModule.forRoot(),
   ],
-  providers: [
-    provideAnimationsAsync('noop')
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideAnimationsAsync('noop')],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

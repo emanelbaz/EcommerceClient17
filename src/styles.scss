@@ -9,35 +9,43 @@
 // @import 'primeflex/primeflex.css';
 // @import 'primeicons/primeicons.css';
 
-@media(max-width: 768px){
-  sidebar{
-    display: none;
-  }
-
-}
-@media(min-width :769px) {
-  
-  
-}
-
 :root body {
-  background-color: #F1F3F4 !important; /* Last resort */
+  background-color: #f1f3f4 !important; /* Last resort */
   height: 100%;
-  ul{
+  ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  
-  
-  
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
+}
+p {
+  margin-bottom: 0;
 }
 
- 
- 
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

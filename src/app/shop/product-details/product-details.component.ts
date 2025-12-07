@@ -7,28 +7,28 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit {
-  productId:any
+  productId: any;
   product!: IProduct;
   quantity = 1; // ✅ نبدأ بواحد
 
   constructor(
-    private shopService: ShopService,private route:ActivatedRoute) {}
+    private shopService: ShopService,
+    private route: ActivatedRoute
+  ) {}
   ngOnInit() {
-     this.productId =  this.route.snapshot.paramMap.get('id')
-     console.log(this.productId,'id');
-     this.getPrpductById()
-     
-      
+    this.productId = this.route.snapshot.paramMap.get('id');
+    this.getPrpductById();
   }
-  getPrpductById(){
-     this.shopService.getProductById(this.productId).subscribe((response:any)=>{
-      this.product = response
-      console.log(this.product);
-      
-     })
+  getPrpductById() {
+    this.shopService
+      .getProductById(this.productId)
+      .subscribe((response: any) => {
+        this.product = response;
+        
+      });
   }
 
   // ngOnInit(): void {

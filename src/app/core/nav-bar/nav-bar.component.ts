@@ -8,7 +8,7 @@ import { Cart } from '../../shared/models/cart';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
   cartCount = 0;
@@ -21,14 +21,13 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     // ✅ اربط الـ currentUser$ عشان تستخدمه في الـ HTML بسهولة (async pipe)
-    this.currentUser$ = this.accountService.currentUser$;
-
-    // ✅ تابع التغييرات في السلة واحسب العدد الإجمالي
-    this.cartService.cart$.subscribe((cart: Cart | null) => {
-      this.cartCount = cart
-        ? cart.items.reduce((sum, item) => sum + item.quantity, 0)
-        : 0;
-    });
+    // this.currentUser$ = this.accountService.currentUser$;
+    // // ✅ تابع التغييرات في السلة واحسب العدد الإجمالي
+    // this.cartService.cart$.subscribe((cart: Cart | null) => {
+    //   this.cartCount = cart
+    //     ? cart.items.reduce((sum, item) => sum + item.quantity, 0)
+    //     : 0;
+    // });
   }
 
   logout() {
