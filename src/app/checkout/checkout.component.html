@@ -1,1 +1,91 @@
-<p>checkout works!</p>
+<section class="checkout-section">
+  <div class="container">
+    <h2 class="title mb-5">Checkout</h2>
+
+    <div class="checkout-form">
+      <form [formGroup]="checkoutForm" (ngSubmit)="submitFrom()">
+        
+        <h3 class="mb-3 fw-bold">Personal Info</h3>
+
+        <!-- username -->
+        <div class="mb-3">
+          <label for="input-firstName" class="form-label">First Name</label>
+          <input
+            formControlName="firstName"
+            type="text"
+            class="form-control"
+            id="input-firstName"
+            placeholder="Type your First Name..."
+          />
+        </div>
+
+        <!-- last name -->
+        <div class="mb-3">
+          <label for="input-lastname" class="form-label">Last Name</label>
+          <input
+            formControlName="lastName"
+            type="text"
+            class="form-control"
+            id="input-lastname"
+            placeholder="Type your Last Name..."
+          />
+        </div>
+
+        <!-- buyer email -->
+        <div class="mb-3">
+          <label for="input-buyeremail" class="form-label"
+            >Contact Email address</label
+          >
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="input-buyeremail"
+            placeholder="name@example.com"
+          />
+        </div>
+
+        <h3 class="mb-3 fw-bold">Shipping Address</h3>
+
+        <!-- street -->
+        <div class="mb-3">
+          <label for="input-street" class="form-label">Street</label>
+          <input
+            formControlName="street"
+            type="text"
+            class="form-control"
+            id="input-street"
+            placeholder="Street..."
+          />
+        </div>
+
+        <!-- city -->
+        <div class="mb-3">
+          <label for="input-city" class="form-label">City</label>
+          <input
+            formControlName="city"
+            type="text"
+            class="form-control"
+            id="input-city"
+            placeholder="City..."
+          />
+        </div>
+
+        <!-- country -->
+        <div class="mb-3">
+          <label for="input-country" class="form-label">Country</label>
+          <input
+            formControlName="country"
+            type="text"
+            class="form-control"
+            id="input-country"
+            placeholder="Country..."
+          />
+        </div>
+
+
+
+      </form>
+    </div>
+  </div>
+</section>
