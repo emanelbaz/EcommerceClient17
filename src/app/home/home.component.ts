@@ -25,8 +25,10 @@ addToCart(product: any) {
   constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
+    console.log('HomeComponent initialized');
     this.productsService.getProducts().subscribe(data => {
       this.products = data;
+      console.log('Products loaded:', this.products);
     });
   }
 

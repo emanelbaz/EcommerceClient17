@@ -13,6 +13,7 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
      getProducts():Observable<IProduct[]> {
+      console.log('Fetching products from API');
     return  this.http.get<IProduct[]>(`${environment.apiUrl}/Products`)
 
   }

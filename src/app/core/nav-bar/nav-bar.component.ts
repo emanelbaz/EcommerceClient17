@@ -21,7 +21,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     // ✅ اربط الـ currentUser$ عشان تستخدمه في الـ HTML بسهولة (async pipe)
-    // this.currentUser$ = this.accountService.currentUser$;
+    this.currentUser$ = this.accountService.currentUser$;
     // // ✅ تابع التغييرات في السلة واحسب العدد الإجمالي
     // this.cartService.cart$.subscribe((cart: Cart | null) => {
     //   this.cartCount = cart
