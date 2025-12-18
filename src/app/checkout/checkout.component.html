@@ -4,87 +4,128 @@
 
     <div class="checkout-form">
       <form [formGroup]="checkoutForm" (ngSubmit)="submitFrom()">
-        
-        <h3 class="mb-3 fw-bold">Personal Info</h3>
+        <div formGroupName="shippingAddress">
+          <h3 class="mb-3 fw-bold">Shipping Address</h3>
 
-        <!-- username -->
-        <div class="mb-3">
-          <label for="input-firstName" class="form-label">First Name</label>
-          <input
-            formControlName="firstName"
-            type="text"
-            class="form-control"
-            id="input-firstName"
-            placeholder="Type your First Name..."
-          />
+          <!-- username -->
+          <div class="mb-3">
+            <label for="input-firstName" class="form-label">First Name</label>
+            <input
+              formControlName="firstName"
+              type="text"
+              class="form-control"
+              id="input-firstName"
+              placeholder="Type First Name..."
+            />
+          </div>
+
+          <!-- last name -->
+          <div class="mb-3">
+            <label for="input-lastname" class="form-label">Last Name</label>
+            <input
+              formControlName="lastName"
+              type="text"
+              class="form-control"
+              id="input-lastname"
+              placeholder="Type Last Name..."
+            />
+          </div>
+
+          <!-- street -->
+          <div class="mb-3">
+            <label for="input-street" class="form-label">Street</label>
+            <input
+              formControlName="street"
+              type="text"
+              class="form-control"
+              id="input-street"
+              placeholder="Street..."
+            />
+          </div>
+
+          <!-- city -->
+          <div class="mb-3">
+            <label for="input-city" class="form-label">City</label>
+            <input
+              formControlName="city"
+              type="text"
+              class="form-control"
+              id="input-city"
+              placeholder="City..."
+            />
+          </div>
+
+          <!-- country -->
+          <div class="mb-3">
+            <label for="input-country" class="form-label">Country</label>
+            <input
+              formControlName="country"
+              type="text"
+              class="form-control"
+              id="input-country"
+              placeholder="Country..."
+            />
+          </div>
         </div>
 
-        <!-- last name -->
-        <div class="mb-3">
-          <label for="input-lastname" class="form-label">Last Name</label>
-          <input
-            formControlName="lastName"
-            type="text"
-            class="form-control"
-            id="input-lastname"
-            placeholder="Type your Last Name..."
-          />
+        <div class="contact-info">
+          <h3 class="mb-3 fw-bold">Contact Info</h3>
+
+          <!-- buyer email -->
+          <div class="mb-3">
+            <label for="input-buyeremail" class="form-label"
+              >Contact Email address</label
+            >
+            <input
+              type="email"
+              formControlName="email"
+              class="form-control"
+              id="input-buyeremail"
+              placeholder="name@example.com"
+            />
+          </div>
         </div>
 
-        <!-- buyer email -->
-        <div class="mb-3">
-          <label for="input-buyeremail" class="form-label"
-            >Contact Email address</label
-          >
-          <input
-            type="email"
-            formControlName="email"
-            class="form-control"
-            id="input-buyeremail"
-            placeholder="name@example.com"
-          />
+        <div class="shipping-method py-3">
+          <h3 class="mb-3 fw-bold">Shipping Method</h3>
+
+          @for (method of shippingMethods; track $index) {
+          <div class="form-check mb-2">
+            <input
+              type="radio"
+              class="form-check-input"
+              formControlName="shippingMethod"
+              [value]="method.id"
+              id="ship-{{ method.id }}"
+            />
+            <label class="form-check-label" for="ship-{{ method.id }}">
+              {{ method.label }}
+            </label>
+          </div>
+
+          }
         </div>
 
-        <h3 class="mb-3 fw-bold">Shipping Address</h3>
+        <div class="payment-method py-3">
+          <h3 class="mb-3 fw-bold">Payment Method</h3>
 
-        <!-- street -->
-        <div class="mb-3">
-          <label for="input-street" class="form-label">Street</label>
-          <input
-            formControlName="street"
-            type="text"
-            class="form-control"
-            id="input-street"
-            placeholder="Street..."
-          />
+          @for (method of paymentMethods; track $index) {
+          <div class="form-check mb-2">
+            <input
+              type="radio"
+              class="form-check-input"
+              formControlName="paymentMethod"
+              [value]="method.id"
+              id="pay-{{ method.id }}"
+            />
+            <label class="form-check-label" for="pay-{{ method.id }}">
+              {{ method.label }}
+            </label>
+          </div>
+          }
         </div>
 
-        <!-- city -->
-        <div class="mb-3">
-          <label for="input-city" class="form-label">City</label>
-          <input
-            formControlName="city"
-            type="text"
-            class="form-control"
-            id="input-city"
-            placeholder="City..."
-          />
-        </div>
-
-        <!-- country -->
-        <div class="mb-3">
-          <label for="input-country" class="form-label">Country</label>
-          <input
-            formControlName="country"
-            type="text"
-            class="form-control"
-            id="input-country"
-            placeholder="Country..."
-          />
-        </div>
-
-
-
+        <button class="btn btn-success mt-4" type="submit">Place Order</button>
       </form>
     </div>
   </div>

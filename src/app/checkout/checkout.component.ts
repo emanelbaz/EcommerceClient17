@@ -1,3 +1,4 @@
+import { PAYMENT_METHODS, SHIPPING_METHODS } from './checkout.constants';
 import { Component } from '@angular/core';
 import {
   FormControl,
@@ -15,6 +16,9 @@ import {
 })
 export class CheckoutComponent {
   checkoutForm: FormGroup = new FormGroup({
+    buyerEmail: new FormControl(null, [Validators.required, Validators.email]),
+    shippingMethod: new FormControl(null, Validators.required),
+    paymentMethod: new FormControl(null, Validators.required),
     shippingAddress: new FormGroup({
       firstName: new FormControl(null, [
         Validators.required,
@@ -23,10 +27,6 @@ export class CheckoutComponent {
       lastName: new FormControl(null, [
         Validators.required,
         Validators.minLength(3),
-      ]),
-      buyerEmail: new FormControl(null, [
-        Validators.required,
-        Validators.email,
       ]),
       street: new FormControl(null, [
         Validators.required,
@@ -39,9 +39,12 @@ export class CheckoutComponent {
       country: new FormControl(null, [
         Validators.required,
         Validators.minLength(3),
-      ]) 
+      ]),
     }),
   });
+
+  shippingMethods = SHIPPING_METHODS;
+  paymentMethods = PAYMENT_METHODS;
 
   submitFrom() {}
 }
