@@ -1,132 +1,150 @@
-<section class="checkout-section">
+<section class="checkout-section py-5">
   <div class="container">
-    <h2 class="title mb-5">Checkout</h2>
+    <h2 class="mb-4 fw-bold text-center">Checkout</h2>
 
-    <div class="checkout-form">
-      <form [formGroup]="checkoutForm" (ngSubmit)="submitFrom()">
-        <div formGroupName="shippingAddress">
-          <h3 class="mb-3 fw-bold">Shipping Address</h3>
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
 
-          <!-- username -->
-          <div class="mb-3">
-            <label for="input-firstName" class="form-label">First Name</label>
-            <input
-              formControlName="firstName"
-              type="text"
-              class="form-control"
-              id="input-firstName"
-              placeholder="Type First Name..."
-            />
-          </div>
+            <form [formGroup]="checkoutForm" (ngSubmit)="submitFrom()">
 
-          <!-- last name -->
-          <div class="mb-3">
-            <label for="input-lastname" class="form-label">Last Name</label>
-            <input
-              formControlName="lastName"
-              type="text"
-              class="form-control"
-              id="input-lastname"
-              placeholder="Type Last Name..."
-            />
-          </div>
+              <!-- SHIPPING ADDRESS -->
+              <div formGroupName="shippingAddress" class="mb-4">
+                <h4 class="fw-bold mb-3">Shipping Address</h4>
 
-          <!-- street -->
-          <div class="mb-3">
-            <label for="input-street" class="form-label">Street</label>
-            <input
-              formControlName="street"
-              type="text"
-              class="form-control"
-              id="input-street"
-              placeholder="Street..."
-            />
-          </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">First Name</label>
+                    <input
+                      formControlName="firstName"
+                      type="text"
+                      class="form-control"
+                      placeholder="First name"
+                    />
+                  </div>
 
-          <!-- city -->
-          <div class="mb-3">
-            <label for="input-city" class="form-label">City</label>
-            <input
-              formControlName="city"
-              type="text"
-              class="form-control"
-              id="input-city"
-              placeholder="City..."
-            />
-          </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Last Name</label>
+                    <input
+                      formControlName="lastName"
+                      type="text"
+                      class="form-control"
+                      placeholder="Last name"
+                    />
+                  </div>
+                </div>
 
-          <!-- country -->
-          <div class="mb-3">
-            <label for="input-country" class="form-label">Country</label>
-            <input
-              formControlName="country"
-              type="text"
-              class="form-control"
-              id="input-country"
-              placeholder="Country..."
-            />
+                <div class="mb-3">
+                  <label class="form-label">Street</label>
+                  <input
+                    formControlName="street"
+                    type="text"
+                    class="form-control"
+                    placeholder="Street address"
+                  />
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">City</label>
+                    <input
+                      formControlName="city"
+                      type="text"
+                      class="form-control"
+                      placeholder="City"
+                    />
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Country</label>
+                    <input
+                      formControlName="country"
+                      type="text"
+                      class="form-control"
+                      placeholder="Country"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <hr />
+
+              <!-- CONTACT INFO -->
+              <div class="mb-4">
+                <h4 class="fw-bold mb-3">Contact Information</h4>
+
+                <div class="mb-3">
+                  <label class="form-label">Email Address</label>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control"
+                    placeholder="name@example.com"
+                  />
+                </div>
+              </div>
+
+              <hr />
+
+              <!-- SHIPPING METHOD -->
+              <div class="mb-4">
+                <h4 class="fw-bold mb-3">Shipping Method</h4>
+
+                @for (method of shippingMethods; track $index) {
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      formControlName="shippingMethod"
+                      [value]="method.id"
+                      id="ship-{{ method.id }}"
+                    />
+                    <label class="form-check-label" for="ship-{{ method.id }}">
+                      {{ method.label }}
+                    </label>
+                  </div>
+                }
+              </div>
+
+              <hr />
+
+              <!-- PAYMENT METHOD -->
+              <div class="mb-4">
+                <h4 class="fw-bold mb-3">Payment Method</h4>
+
+                @for (method of paymentMethods; track $index) {
+                  <div class="form-check mb-2">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      formControlName="paymentMethod"
+                      [value]="method.id"
+                      id="pay-{{ method.id }}"
+                    />
+                    <label class="form-check-label" for="pay-{{ method.id }}">
+                      {{ method.label }}
+                    </label>
+                  </div>
+                }
+              </div>
+
+              <!-- SUBMIT -->
+              <div class="d-grid mt-4">
+                <button
+                  class="checkout-btn btn btn-success btn-lg cursor-pointer"
+                  type="submit"
+                  [disabled]="checkoutForm.invalid"
+                >
+                  Place Order
+                </button>
+              </div>
+
+            </form>
+
           </div>
         </div>
-
-        <div class="contact-info">
-          <h3 class="mb-3 fw-bold">Contact Info</h3>
-
-          <!-- buyer email -->
-          <div class="mb-3">
-            <label for="input-buyeremail" class="form-label"
-              >Contact Email address</label
-            >
-            <input
-              type="email"
-              formControlName="email"
-              class="form-control"
-              id="input-buyeremail"
-              placeholder="name@example.com"
-            />
-          </div>
-        </div>
-
-        <div class="shipping-method py-3">
-          <h3 class="mb-3 fw-bold">Shipping Method</h3>
-
-          @for (method of shippingMethods; track $index) {
-          <div class="form-check mb-2">
-            <input
-              type="radio"
-              class="form-check-input"
-              formControlName="shippingMethod"
-              [value]="method.id"
-              id="ship-{{ method.id }}"
-            />
-            <label class="form-check-label" for="ship-{{ method.id }}">
-              {{ method.label }}
-            </label>
-          </div>
-
-          }
-        </div>
-
-        <div class="payment-method py-3">
-          <h3 class="mb-3 fw-bold">Payment Method</h3>
-
-          @for (method of paymentMethods; track $index) {
-          <div class="form-check mb-2">
-            <input
-              type="radio"
-              class="form-check-input"
-              formControlName="paymentMethod"
-              [value]="method.id"
-              id="pay-{{ method.id }}"
-            />
-            <label class="form-check-label" for="pay-{{ method.id }}">
-              {{ method.label }}
-            </label>
-          </div>
-          }
-        </div>
-
-        <button class="btn btn-success mt-4" type="submit">Place Order</button>
-      </form>
+      </div>
     </div>
   </div>
 </section>

@@ -1,5 +1,26 @@
-.checkout-section {
-  padding: 20px;
-  border: 1px bold #ddd;
-  background-color: #fff;
+.checkout-btn:hover{
+  background-color: #218838 !important;
+  cursor: pointer;
+}
+
+.checkout-section .card {
+  transition: box-shadow 0.3s ease;
+}
+
+.checkout-section .card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #28a745;
+}
+
+.checkout-section h4 {
+  font-size: 1.2rem;
+}
+
+.form-check {
+  padding-left: 1.75rem;
 }
