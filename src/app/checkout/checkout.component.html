@@ -6,9 +6,7 @@
       <div class="col-lg-10">
         <div class="card shadow-sm border-0">
           <div class="card-body p-4">
-
             <form [formGroup]="checkoutForm" (ngSubmit)="submitFrom()">
-
               <!-- SHIPPING ADDRESS -->
               <div formGroupName="shippingAddress" class="mb-4">
                 <h4 class="fw-bold mb-3">Shipping Address</h4>
@@ -22,6 +20,18 @@
                       class="form-control"
                       placeholder="First name"
                     />
+
+                    @if ( checkoutForm.get('shippingAddress.firstName')?.errors
+                    && checkoutForm.get('shippingAddress.firstName')?.touched )
+                    {
+                    <div class="invalid-feedback d-block">
+                      @if
+                      (checkoutForm.get('shippingAddress.firstName')?.getError('required'))
+                      { First name is required. } @else if
+                      (checkoutForm.get('shippingAddress.firstName')?.getError('minlength'))
+                      { First name must be at least 3 characters. }
+                    </div>
+                    }
                   </div>
 
                   <div class="col-md-6 mb-3">
@@ -32,6 +42,17 @@
                       class="form-control"
                       placeholder="Last name"
                     />
+
+                    @if ( checkoutForm.get('shippingAddress.firstName')?.errors
+                    && checkoutForm.get('shippingAddress.lastName')?.touched ) {
+                    <div class="invalid-feedback d-block">
+                      @if
+                      (checkoutForm.get('shippingAddress.lastName')?.getError('required'))
+                      { last name is required. } @else if
+                      (checkoutForm.get('shippingAddress.lastName')?.getError('minlength'))
+                      { last name must be at least 3 characters. }
+                    </div>
+                    }
                   </div>
                 </div>
 
@@ -43,6 +64,16 @@
                     class="form-control"
                     placeholder="Street address"
                   />
+                  @if ( checkoutForm.get('shippingAddress.street')?.errors &&
+                  checkoutForm.get('shippingAddress.street')?.touched ) {
+                  <div class="invalid-feedback d-block">
+                    @if
+                    (checkoutForm.get('shippingAddress.street')?.getError('required'))
+                    { Street is required. } @else if
+                    (checkoutForm.get('shippingAddress.street')?.getError('minlength'))
+                    { Street must be at least 3 characters. }
+                  </div>
+                  }
                 </div>
 
                 <div class="row">
@@ -54,6 +85,17 @@
                       class="form-control"
                       placeholder="City"
                     />
+
+                    @if ( checkoutForm.get('shippingAddress.city')?.errors &&
+                    checkoutForm.get('shippingAddress.city')?.touched ) {
+                    <div class="invalid-feedback d-block">
+                      @if
+                      (checkoutForm.get('shippingAddress.city')?.getError('required'))
+                      { City is required. } @else if
+                      (checkoutForm.get('shippingAddress.city')?.getError('minlength'))
+                      { City must be at least 3 characters. }
+                    </div>
+                    }
                   </div>
 
                   <div class="col-md-6 mb-3">
@@ -64,6 +106,17 @@
                       class="form-control"
                       placeholder="Country"
                     />
+
+                    @if ( checkoutForm.get('shippingAddress.country')?.errors &&
+                    checkoutForm.get('shippingAddress.country')?.touched ) {
+                    <div class="invalid-feedback d-block">
+                      @if
+                      (checkoutForm.get('shippingAddress.country')?.getError('required'))
+                      { Country is required. } @else if
+                      (checkoutForm.get('shippingAddress.country')?.getError('minlength'))
+                      { Country must be at least 3 characters. }
+                    </div>
+                    }
                   </div>
                 </div>
               </div>
@@ -78,10 +131,20 @@
                   <label class="form-label">Email Address</label>
                   <input
                     type="email"
-                    formControlName="email"
+                    formControlName="buyerEmail"
                     class="form-control"
                     placeholder="name@example.com"
                   />
+
+                  @if ( checkoutForm.get('buyerEmail')?.errors &&
+                  checkoutForm.get('buyerEmail')?.touched ) {
+                  <div class="invalid-feedback d-block">
+                    @if (checkoutForm.get('buyerEmail')?.getError('required')) {
+                    Email is required. } @else if
+                    (checkoutForm.get('buyerEmail')?.getError('email')) { Please
+                    enter a valid email address. }
+                  </div>
+                  }
                 </div>
               </div>
 
@@ -92,18 +155,18 @@
                 <h4 class="fw-bold mb-3">Shipping Method</h4>
 
                 @for (method of shippingMethods; track $index) {
-                  <div class="form-check mb-2">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      formControlName="shippingMethod"
-                      [value]="method.id"
-                      id="ship-{{ method.id }}"
-                    />
-                    <label class="form-check-label" for="ship-{{ method.id }}">
-                      {{ method.label }}
-                    </label>
-                  </div>
+                <div class="form-check mb-2">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    formControlName="shippingMethod"
+                    [value]="method.id"
+                    id="ship-{{ method.id }}"
+                  />
+                  <label class="form-check-label" for="ship-{{ method.id }}">
+                    {{ method.label }}
+                  </label>
+                </div>
                 }
               </div>
 
@@ -114,18 +177,18 @@
                 <h4 class="fw-bold mb-3">Payment Method</h4>
 
                 @for (method of paymentMethods; track $index) {
-                  <div class="form-check mb-2">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      formControlName="paymentMethod"
-                      [value]="method.id"
-                      id="pay-{{ method.id }}"
-                    />
-                    <label class="form-check-label" for="pay-{{ method.id }}">
-                      {{ method.label }}
-                    </label>
-                  </div>
+                <div class="form-check mb-2">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    formControlName="paymentMethod"
+                    [value]="method.id"
+                    id="pay-{{ method.id }}"
+                  />
+                  <label class="form-check-label" for="pay-{{ method.id }}">
+                    {{ method.label }}
+                  </label>
+                </div>
                 }
               </div>
 
@@ -139,9 +202,7 @@
                   Place Order
                 </button>
               </div>
-
             </form>
-
           </div>
         </div>
       </div>
