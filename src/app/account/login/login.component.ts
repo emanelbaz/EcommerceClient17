@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
   model: any = {};
   loginForm!: FormGroup;
 
+  isLoading: boolean = false;
+
   constructor(
     private accountService: AccountService,
     private router: Router,
@@ -33,13 +35,16 @@ export class LoginComponent implements OnInit {
       this.toaster.error('Fix Login form Errors!', 'Error');
       return;
     }
+    this.isLoading = true;
     this.accountService.userLogin(this.loginForm.value).subscribe({
       next: (response) => {
+        this.isLoading = false;
         console.log(' Logged in successfully', response);
         this.toaster.success('Welcome Back', 'Success');
         this.router.navigateByUrl('/shop');
       },
       error: (err) => {
+        this.isLoading = false;
         this.toaster.error(
           'Login failed. Please check your login info and try again.',
           'Error'

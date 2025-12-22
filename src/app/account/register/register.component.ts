@@ -21,6 +21,8 @@ export class RegisterComponent {
   private readonly accountService = inject(AccountService);
   private readonly router = inject(Router);
 
+  isLoading: boolean = false;
+
   registerForm: FormGroup = new FormGroup(
     {
       displayName: new FormControl(null, [
@@ -54,9 +56,11 @@ export class RegisterComponent {
       alert('Fix Register form Errors!');
       return;
     }
+    this.isLoading = true;
     const { rePassword, ...registerFormValue } = this.registerForm.value;
     this.accountService.register(registerFormValue).subscribe({
       next: (response) => {
+        this.isLoading = false;
         console.log(' Account created successfully', response);
         alert('Account created successfully, you are ready to login!');
         this.registerForm.reset();
@@ -65,6 +69,7 @@ export class RegisterComponent {
         }, 2000);
       },
       error: (err:HttpErrorResponse) => {
+        this.isLoading = false;
         alert('Register failed.'+ err.error);
         console.log('Register failed:', err.error);
       },

@@ -128,7 +128,12 @@
                 }
               </div>
 
-              <button type="submit" class="btn btn-success px-5">Login</button>
+              <button type="submit" class="btn btn-success px-5" [disabled]="isLoading">Login
+                @if(isLoading){
+                <span><i class="fas fa-spinner fa-spin"></i></span>
+
+                }
+              </button>
             </form>
           </div>
 

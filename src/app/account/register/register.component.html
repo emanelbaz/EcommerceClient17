@@ -133,7 +133,13 @@
 
                 <!-- ================== SUBMIT BUTTON ================== -->
 
-              <button type="submit" class="btn btn-success px-5">Register your account </button>
+              <button type="submit" class="btn btn-success px-5" [disabled]="isLoading">
+                Register your account 
+                @if(isLoading){
+                <span><i class="fas fa-spinner fa-spin"></i></span>
+
+                }
+              </button>
             </form>
           </div>
 
