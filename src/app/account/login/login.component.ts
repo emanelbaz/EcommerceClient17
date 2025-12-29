@@ -3,6 +3,7 @@ import { AccountService } from '../../core/services/account.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/app/environments/environment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,7 +42,17 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         console.log(' Logged in successfully', response);
         this.toaster.success('Welcome Back', 'Success');
-        this.router.navigateByUrl('/shop');
+        // this.router.navigateByUrl('/shop');
+        setTimeout(()=>{
+              
+              //1. save token
+              localStorage.setItem(environment.token, response.token);
+              
+              //2. decode token
+              this.accountService.saveUserData();
+              //3.navigate login path
+            this.router.navigate(['/shop']);
+            }, 1000)
       },
       error: (err) => {
         this.isLoading = false;
